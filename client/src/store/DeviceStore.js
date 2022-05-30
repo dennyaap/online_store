@@ -10,16 +10,19 @@ export default class DeviceStore {
         ];
         this._brands = [
             {id: 1, name: 'Samsung'},
-            {id: 2, name: 'Apple'}
+            {id: 2, name: 'Apple'},
+            {id: 3, name: 'Samsung'},
+            {id: 4, name: 'Lenovo'},
+
         ];
         this._devices = [
             {id: 1, name: "Iphone 12 pro", price: 96000, rating: 5, img: 'https://app-room76.ru/wp-content/uploads/2020/10/iphone-12-pro-silver-hero.png'},
             {id: 2, name: "Iphone 12 pro", price: 96000, rating: 5, img: 'https://app-room76.ru/wp-content/uploads/2020/10/iphone-12-pro-silver-hero.png'},
             {id: 3, name: "Iphone 12 pro", price: 96000, rating: 5, img: 'https://app-room76.ru/wp-content/uploads/2020/10/iphone-12-pro-silver-hero.png'},
             {id: 4, name: "Iphone 12 pro", price: 96000, rating: 5, img: 'https://app-room76.ru/wp-content/uploads/2020/10/iphone-12-pro-silver-hero.png'},
-
         ];
         this._selectedType = {};
+        this._selectedBrand = {};
         makeAutoObservable(this); //теперь mobx будет следить за изменениями этих переменных и при их изменении компоненты будут перерендедориваться
     }
     //создаем экшены
@@ -35,6 +38,9 @@ export default class DeviceStore {
     setSelectedType(type) {
         this._selectedType = type;
     }
+    setSelectedBrand(brand) {
+        this._selectedBrand = brand;
+    }
 
 
     //computed функции, они вызываются в том случае, если переменная внутри была изменена
@@ -49,5 +55,8 @@ export default class DeviceStore {
     }
     get selectedType() {
         return this._selectedType;
+    }
+    get selectedBrand() {
+        return this._selectedBrand;
     }
 }
