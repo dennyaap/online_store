@@ -20,6 +20,9 @@ export default class DeviceStore {
             {id: 2, name: "Iphone 12 pro", price: 96000, rating: 5, img: 'https://app-room76.ru/wp-content/uploads/2020/10/iphone-12-pro-silver-hero.png'},
             {id: 3, name: "Iphone 12 pro", price: 96000, rating: 5, img: 'https://app-room76.ru/wp-content/uploads/2020/10/iphone-12-pro-silver-hero.png'},
             {id: 4, name: "Iphone 12 pro", price: 96000, rating: 5, img: 'https://app-room76.ru/wp-content/uploads/2020/10/iphone-12-pro-silver-hero.png'},
+            {id: 5, name: "Iphone 12 pro", price: 96000, rating: 5, img: 'https://app-room76.ru/wp-content/uploads/2020/10/iphone-12-pro-silver-hero.png'},
+            {id: 6, name: "Iphone 12 pro", price: 96000, rating: 5, img: 'https://app-room76.ru/wp-content/uploads/2020/10/iphone-12-pro-silver-hero.png'},
+
         ];
         this._selectedType = {};
         this._selectedBrand = {};
