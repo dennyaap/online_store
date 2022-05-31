@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Container, Form, Card, Button} from 'react-bootstrap';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { login, registration } from '../http/useAPI';
+import { login, registration } from '../http/userAPI';
 import { REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../utils/consts';
 import Context from '../index';
 import { observer } from 'mobx-react-lite';
