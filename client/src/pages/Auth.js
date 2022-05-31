@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { Container, Form, Card, Button} from 'react-bootstrap';
-import { NavLink, useLocation } from 'react-router-dom';
-import { REGISTRATION_ROUTE, LOGIN_ROUTE } from '../utils/consts';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { login, registration } from '../http/useAPI';
+import { REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../utils/consts';
+import Context from '../index';
+import { observer } from 'mobx-react-lite';
 
 
 
-const Auth = () => {
+const Auth = observer( () => {
     const location = useLocation();
     const isLogin = location.pathname === LOGIN_ROUTE;
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const { user } = useContext(Context);
+    const navigate = useNavigate();
+
+    const click = async () => {
+        try {
+            let data;
+            if (isLogin) {
+                data = await login(email, password);
+            } else {
+                data = await registration(email, password);
+            }
+            user.setUser(data)
+            user.setIsAuth(true);
+            navigate(SHOP_ROUTE);
+        } catch (e) {
+            alert(e.response.data.message);
+        }
+        
+    }
 
     return (
         <Container 
@@ -20,13 +46,22 @@ const Auth = () => {
                     <Form.Control
                         className="mt-3"
                         placeholder="Email..."
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                     />
                     <Form.Control
                         className="mt-3"
                         placeholder="Пароль..."
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        type='password'
                     />
                     
-                    <Button className="mt-3" variant={'outline-success'}>
+                    <Button 
+                        className="mt-3" 
+                        variant={'outline-success'}
+                        onClick={click}
+                    >
                         {isLogin ? 'Войти' : 'Регистрация'}
                     </Button>
                     {isLogin ? 
@@ -45,6 +80,6 @@ const Auth = () => {
             </Card>
         </Container>
     );
-}
+});
 
 export default Auth;
