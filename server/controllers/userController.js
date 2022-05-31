@@ -42,14 +42,7 @@ class UserController {
         return res.json({token});
     }
     async check(req, res, next){ //сгенерировать новый токен и отправить его обратно на клиент
-        // const {id} = req.query;
-        // if(!id) {
-        //     return next(ApiError.badRequest('Не задан ID'));
-        // }
-        // res.json(id);
-        // res.json({message: 'ALL RIGHT'})
-
-        const toket = generateJwt(req.user.id, req.user.email, req.user.role)
+        const token = generateJwt(req.user.id, req.user.email, req.user.role)
         return res.json({token})
 
     }
