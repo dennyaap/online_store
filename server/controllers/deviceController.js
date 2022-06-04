@@ -2,7 +2,6 @@ const {Device, DeviceInfo} = require('../models/models');
 const uuid = require('uuid');
 const path = require('path');
 const ApiError = require('../error/ApiError');
-const { type } = require('os');
 
 class DeviceController {
     async create(req, res, next){
@@ -48,7 +47,7 @@ class DeviceController {
             devices = await Device.findAndCountAll({where: {typeId}, limit, offset});
         }
         if(brandId && typeId){
-            devices = await Device.findAndCountAll({where: {brandId, typeId, offset}});
+            devices = await Device.findAndCountAll({where: {brandId, typeId}, limit, offset});
         }
         return res.json(devices);
     }
